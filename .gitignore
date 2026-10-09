@@ -1,0 +1,53 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic and Static libraries
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.la
+
+# Executables
+*.exe
+*.out
+*.app
+*.bin
+
+# Debugging and Profiling
+*.ilk
+*.pdb
+*.dwo
+*.su
+*.idb
+
+# Build directories and CMake outputs
+build/
+bin/
+out/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# IDEs and Editors (Visual Studio, VS Code, JetBrains CLion)
+.vscode/
+.idea/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
