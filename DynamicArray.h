@@ -3,8 +3,8 @@
 
 class DynamicArray {
 private:
-    int* m_data;
-    int m_size;
+    int* m_data; 
+    int m_size;   
 
 public:
     DynamicArray(int size);

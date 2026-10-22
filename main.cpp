@@ -9,7 +9,7 @@ int main() {
     arr1.set(2, 30);
     arr1.print();
 
-    std::cout << "Test 2: Copy constructor" << std::endl;
+    std::cout << "Test 2: Copy conctructor" << std::endl;
     DynamicArray arr2 = arr1;
     arr2.print();
 
@@ -21,7 +21,7 @@ int main() {
     DynamicArray arr3(2);
     arr3.set(0, 5);
     arr3.set(1, 5);
-    arr1.add(arr3);
+    arr1.add(arr3); 
     arr1.print();
 
     return 0;
