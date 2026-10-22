@@ -1,16 +1,19 @@
 #include "DynamicArray.h"
 #include <iostream>
 
-DynamicArray::DynamicArray(int size) { // Конструктор
-    m_size = size; 
-    m_data = new int[size]();
+DynamicArray::DynamicArray(int size) {
+    if (size < 0) {
+        throw std::invalid_argument("Размер массива не может быть отрицательным");
+    }
+    m_size = size;
+    m_data = new int[m_size](); 
 }
 
-DynamicArray::~DynamicArray() { // Деструктор
+DynamicArray::~DynamicArray() {
     delete[] m_data;
 }
 
-DynamicArray::DynamicArray(const DynamicArray& other) { // Конструктор копирования
+DynamicArray::DynamicArray(const DynamicArray& other) {
     m_size = other.m_size;
     m_data = new int[m_size];
     for (int i = 0; i < m_size; ++i) {
@@ -18,57 +21,54 @@ DynamicArray::DynamicArray(const DynamicArray& other) { // Конструкто�
     }
 }
 
-void DynamicArray::print() const { // Функция печати
+void DynamicArray::print() const {
     for (int i = 0; i < m_size; ++i) {
         std::cout << m_data[i] << " ";
     }
     std::cout << std::endl;
 }
 
-void DynamicArray::set(int index, int value) { // Функция записи
+void DynamicArray::set(int index, int value) {
     if (index < 0 || index >= m_size) {
-        std::cout << "Error: index out of range" << std::endl;
-        return;
+        throw std::out_of_range("Ошибка: индекс вне границ массива (set)");
     }
     if (value < -100 || value > 100) {
-        std::cout << "Error: value must be from -100 to 100" << std::endl;
-        return;
+        throw std::invalid_argument("Ошибка: значение должно быть от -100 до 100 (set)");
     }
     m_data[index] = value;
 }
 
-int DynamicArray::get(int index) const { // Функция чтения
+int DynamicArray::get(int index) const {
     if (index < 0 || index >= m_size) {
-        std::cout << "Error: index out of range" << std::endl;
-        return 0;
+        throw std::out_of_range("Ошибка: индекс вне границ массива (get)");
     }
     return m_data[index];
 }
 
-void DynamicArray::append(int value) { // Добавление числа в конец
+void DynamicArray::append(int value) {
     if (value < -100 || value > 100) {
-        std::cout << "Error: value must be from -100 to 100" << std::endl;
-        return;
+        throw std::invalid_argument("Ошибка: значение должно быть от -100 до 100 (append)");
     }
-    int* newData = new int[m_size + 1];
+    
+    int* newData = new int[m_size + 1]; 
     for (int i = 0; i < m_size; ++i) {
         newData[i] = m_data[i];
     }
     newData[m_size] = value;
+    
     delete[] m_data;
     m_data = newData;
     m_size++;
 }
 
-void DynamicArray::add(const DynamicArray& other) { // Функция сложения
+void DynamicArray::add(const DynamicArray& other) {
     for (int i = 0; i < m_size; ++i) {
-        // Если у другого массива есть элемент на этом месте, берем его, иначе 0
-        int val2 = (i < other.m_size) ? other.m_data[i] : 0; 
+        int val2 = (i < other.m_size) ? other.m_data[i] : 0;
         m_data[i] = m_data[i] + val2;
     }
 }
 
-void DynamicArray::subtract(const DynamicArray& other) { // Функция вычитания
+void DynamicArray::subtract(const DynamicArray& other) {
     for (int i = 0; i < m_size; ++i) {
         int val2 = (i < other.m_size) ? other.m_data[i] : 0;
         m_data[i] = m_data[i] - val2;
